@@ -3,7 +3,7 @@ Arduino project for collecting data for/about our plants
 
 ## Hardware
 - Arduino Uno
-- GM5539 photoresistor
+- GM5539 photoresistor (with 4.7k Ohm resistor)
 - TMP36 temperature sensor
 
 ## Software
