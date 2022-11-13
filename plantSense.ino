@@ -29,6 +29,7 @@ void loop() {
   Serial.print(tempC);
   Serial.print(",");
   Serial.print(tempF);
+  Serial.print(",");
   Serial.println();
 
   // collect data every 5 minutes
