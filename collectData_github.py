@@ -16,6 +16,30 @@ arduino = serial.Serial('COM3', 9600, timeout=.1)
 date = date.today()
 fileName = "path/to/dir" + str(date) + ".csv"
 
+# create dictionary to figure out what season we're collecting data during
+season_dict = {}
+season_dict['spring'] = [3,4,5]
+season_dict['summer'] = [6,7,8]
+season_dict['fall'] = [9,10,11]
+season_dict['winter'] = [12,1,2]
+
+# grab keys and values
+key_list = list(season_dict.keys())
+val_list = list(season_dict.values())
+
+# get today's month
+season_now = datetime.now().month
+
+# iterate through to figure out the season
+ind = 0
+for i in val_list:
+    x = list(i)
+    if season_now in x:
+        position = ind
+    else:
+        ind += 1
+season_collected = str(key_list[ind])
+
 #%%
 # main data collector
 # --------------
@@ -31,7 +55,13 @@ while line <= samples:
     data = dataString[:-2]
     # make sure the data isn't just a blank line
     if data:
-        dataParsed = data.split(",")
+		# get time of day data collected
+        time_now = datetime.now()
+        currentTime = time_now.strftime("%H:%M:%S")
+		# make the comma separated string
+        dataLine = data + currentTime + "," + season_collected
+		# parse data into csv friendly format
+        dataParsed = dataLine.split(",")
         sensorData.append(dataParsed)
         line += 1
 		# wait for arduino to measure again
