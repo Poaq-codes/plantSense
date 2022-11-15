@@ -16,6 +16,9 @@ arduino = serial.Serial('COM3', 9600, timeout=.1)
 date = date.today()
 fileName = "path/to/dir" + str(date) + ".csv"
 
+#%%
+# track time of year data collected
+# --------------
 # create dictionary to figure out what season we're collecting data during
 season_dict = {}
 season_dict['spring'] = [3,4,5]
@@ -59,7 +62,7 @@ while line <= samples:
         time_now = datetime.now()
         currentTime = time_now.strftime("%H:%M:%S")
 		# make the comma separated string
-        dataLine = data + currentTime + "," + season_collected
+        dataLine = data + currentTime + "," + str(date) + "," + season_collected
 		# parse data into csv friendly format
         dataParsed = dataLine.split(",")
         sensorData.append(dataParsed)
@@ -74,4 +77,3 @@ with open(fileName, 'w', encoding='UTF8', newline='') as f:
 
 # close port    
 arduino.close()
-    
