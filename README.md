@@ -1,10 +1,11 @@
 # plantSense
-Arduino project for collecting data for/about our plants
+Arduino project for collecting data for/about our plants.
 
 ## Hardware
 - Arduino Uno
 - GM5539 photoresistor (with 4.7k Ohm resistor)
 - LM35 temperature sensor
+- Example schematic included as .png
 
 ## Software
 - .ino file for collecting data from sensors
